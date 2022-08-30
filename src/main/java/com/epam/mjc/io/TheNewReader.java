@@ -1,16 +1,17 @@
 package com.epam.mjc.io;
 
 import java.io.*;
+import java.io.FileReader;
+
+public class TheNewReader {
 
 
-public class FileReader {
-
-    public Profile getDataFromFile(File file) {
+    public static void main(String[] args) {
 
         StringWriter myStringWriter = new StringWriter();
 
         try {
-            BufferedReader myBufferedReader = new BufferedReader(new java.io.FileReader(file));
+            BufferedReader myBufferedReader = new BufferedReader(new FileReader("src/main/resources/Profile.txt"));
             String theInfo;
             while ((theInfo = myBufferedReader.readLine()) != null) {
                 myStringWriter.write(theInfo);
@@ -27,17 +28,15 @@ public class FileReader {
 
         String theAge = theDataFromMyStringWriter.substring(theDataFromMyStringWriter.indexOf("Age:") + 5, theDataFromMyStringWriter.indexOf("Email:"));
         System.out.println(theAge);
-        int theAgeAsAnInteger = Integer.parseInt(theAge);
-
 
         String theEmail = theDataFromMyStringWriter.substring(theDataFromMyStringWriter.indexOf("Email:") + 7, theDataFromMyStringWriter.indexOf("Phone:"));
         System.out.println(theEmail);
 
         String thePhoneNumber = theDataFromMyStringWriter.substring(theDataFromMyStringWriter.indexOf("Phone:") + 7, theDataFromMyStringWriter.length());
         System.out.println(thePhoneNumber);
-        long phoneNumberAsLong = Long.parseLong(thePhoneNumber);
 
-        return new Profile(theName,theAgeAsAnInteger,theEmail,phoneNumberAsLong);
+
+
     }
 
 }
